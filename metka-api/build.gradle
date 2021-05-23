@@ -1,0 +1,45 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'ensibs.c4'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	clientSide
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	///textImplementation.extendsFrom compileOnly
+	///testAnnotationProcesssor.extendsFrom annotationProcessor
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	clientSide(project(':metka-ui'))
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'mysql:mysql-connector-java'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	configurations.runtimeOnly.extendsFrom(configurations.clientSide)
+}
+
+test {
+	useJUnitPlatform()
+}
+
+def profiles = 'dev'
+bootRun {
+	args = ["--spring.profiles.active=" + profiles]
+}
