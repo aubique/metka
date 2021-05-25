@@ -1,6 +1,8 @@
 package ensibs.c4.metka.controller;
 
 import com.google.gson.Gson;
+import ensibs.c4.metka.exception.BadResourceException;
+import ensibs.c4.metka.exception.ResourceAlreadyExistsException;
 import ensibs.c4.metka.exception.ResourceNotFoundException;
 import ensibs.c4.metka.model.Mark;
 import ensibs.c4.metka.service.MarkService;
@@ -53,8 +55,27 @@ public class ApiController {
             final Mark newMark = markService.addMarkByGroup(postMark, groupId);
             // 201
             return ResponseEntity.created(new URI("/rest/mark/" + newMark.getId())).body(newMark);
-        } catch (ResourceNotFoundException ex) {
-
-        }
+        } catch (ResourceAlreadyExistsException ex) {
+            // 409
+            log.error(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (BadResourceException ex) {
+            // 400
+            log.error(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @DeleteMapping("mark/{markId:[\\d]}")
+    public ResponseEntity<Void> deleteMark(@PathVariable Long markId) {
+        try {
+            markService.removeMark(markId);
+            // 200
+            return ResponseEntity.ok().build();
+        } catch (ResourceNotFoundException ex) {
+            // 404
+            log.error(ex.getMessage());
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
