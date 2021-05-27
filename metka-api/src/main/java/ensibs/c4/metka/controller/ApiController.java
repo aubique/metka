@@ -28,7 +28,7 @@ public class ApiController {
     @Autowired
     private MarkService markService;
 
-    @GetMapping("group")
+    @GetMapping("groups")
     public ResponseEntity<List<Mark>> readMarkAll() {
         final List<Mark> groupMarks = markService.getMarkListFull();
         // 200

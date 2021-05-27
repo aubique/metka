@@ -1,6 +1,5 @@
 package ensibs.c4.metka.model;
 
-import com.google.gson.annotations.Expose;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,6 +17,12 @@ public class Mark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "latitude")
+    private float lat;
+
+    @Column(name = "longitude")
+    private float lng;
 
     @ToString.Exclude
     @ManyToOne
