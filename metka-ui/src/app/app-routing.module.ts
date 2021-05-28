@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -12,12 +12,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/hometag/hometag.module').then(m => m.HometagModule),
   },
-  { path: 'survey', loadChildren: () => import('./features/survey/survey.module').then(m => m.SurveyModule) },
+  {
+    path: 'survey',
+    loadChildren: () =>
+      import('./features/survey/survey.module').then(m => m.SurveyModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

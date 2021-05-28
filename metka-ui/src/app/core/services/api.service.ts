@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Marker} from "../model/Marker";
+import {Marker} from "../model/marker";
 import {Observable} from "rxjs";
 
 @Injectable({

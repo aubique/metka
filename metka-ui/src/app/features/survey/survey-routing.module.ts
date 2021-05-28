@@ -2,10 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SurveyComponent } from './survey.component';
 
-const routes: Routes = [{ path: '', component: SurveyComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: SurveyComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class SurveyRoutingModule { }
+export class SurveyRoutingModule {
+}

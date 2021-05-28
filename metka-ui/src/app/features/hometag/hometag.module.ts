@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { HometagRoutingModule } from './hometag-routing.module';
 import { HometagComponent } from './hometag.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    HometagComponent
+    HometagComponent,
   ],
   imports: [
     CommonModule,
-    HometagRoutingModule
-  ]
+    HometagRoutingModule,
+    SharedModule,
+  ],
+  exports: [],
 })
-export class HometagModule { }
+export class HometagModule {
+}

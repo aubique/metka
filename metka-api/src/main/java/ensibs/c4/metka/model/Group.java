@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "group")
+@Table(name = "student_group")
 public class Group {
 
     @Expose
@@ -21,5 +21,5 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
-    private List<Mark> markList;
+    private List<Marker> markerList;
 }

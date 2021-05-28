@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import ensibs.c4.metka.exception.BadResourceException;
 import ensibs.c4.metka.exception.ResourceAlreadyExistsException;
 import ensibs.c4.metka.exception.ResourceNotFoundException;
-import ensibs.c4.metka.model.Mark;
+import ensibs.c4.metka.model.Marker;
 import ensibs.c4.metka.service.MarkService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +29,18 @@ public class ApiController {
     private MarkService markService;
 
     @GetMapping("groups")
-    public ResponseEntity<List<Mark>> readMarkAll() {
-        final List<Mark> groupMarks = markService.getMarkListFull();
+    public ResponseEntity<List<Marker>> readMarkAll() {
+        final List<Marker> groupMarkers = markService.getMarkListFull();
         // 200
-        return ResponseEntity.ok(groupMarks);
+        return ResponseEntity.ok(groupMarkers);
     }
 
     @GetMapping("group/{groupId:[\\d]+")
-    public ResponseEntity<List<Mark>> readMarkSingle(@PathVariable Long groupId) {
+    public ResponseEntity<List<Marker>> readMarkSingle(@PathVariable Long groupId) {
         try {
-            final List<Mark> groupMark = markService.getMarkListByGroup(groupId);
+            final List<Marker> groupMarker = markService.getMarkListByGroup(groupId);
             // 200
-            return ResponseEntity.ok(groupMark);
+            return ResponseEntity.ok(groupMarker);
         } catch (ResourceNotFoundException ex) {
             // 404
             log.error(ex.getMessage());
@@ -49,12 +49,12 @@ public class ApiController {
     }
 
     @PostMapping("group/{groupId:[\\d]+}")
-    public ResponseEntity<?> createMark(@PathVariable Long groupId, @RequestBody Mark postMark)
+    public ResponseEntity<?> createMark(@PathVariable Long groupId, @RequestBody Marker postMarker)
             throws URISyntaxException {
         try {
-            final Mark newMark = markService.addMarkByGroup(postMark, groupId);
+            final Marker newMarker = markService.addMarkByGroup(postMarker, groupId);
             // 201
-            return ResponseEntity.created(new URI("/rest/mark/" + newMark.getId())).body(newMark);
+            return ResponseEntity.created(new URI("/rest/mark/" + newMarker.getId())).body(newMarker);
         } catch (ResourceAlreadyExistsException ex) {
             // 409
             log.error(ex.getMessage());

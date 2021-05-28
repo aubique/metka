@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { SurveyRoutingModule } from './survey-routing.module';
 import { SurveyComponent } from './survey.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    SurveyComponent
+    SurveyComponent,
   ],
   imports: [
     CommonModule,
-    SurveyRoutingModule
-  ]
+    SurveyRoutingModule,
+    SharedModule,
+  ],
+  exports: [],
 })
-export class SurveyModule { }
+export class SurveyModule {
+}

@@ -11,8 +11,8 @@ import javax.persistence.*;
 // Default annotations
 @Data
 @Entity
-@Table(name = "mark")
-public class Mark {
+@Table(name = "marker")
+public class Marker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

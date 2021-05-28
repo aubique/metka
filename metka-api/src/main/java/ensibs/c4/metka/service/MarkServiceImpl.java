@@ -4,7 +4,7 @@ import ensibs.c4.metka.exception.BadResourceException;
 import ensibs.c4.metka.exception.ResourceAlreadyExistsException;
 import ensibs.c4.metka.exception.ResourceNotFoundException;
 import ensibs.c4.metka.model.Group;
-import ensibs.c4.metka.model.Mark;
+import ensibs.c4.metka.model.Marker;
 import ensibs.c4.metka.repository.GroupRepository;
 import ensibs.c4.metka.repository.MarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,34 +25,34 @@ public class MarkServiceImpl implements MarkService {
     MarkRepository markRepository;
 
     @Override
-    public List<Mark> getMarkListFull() {
+    public List<Marker> getMarkListFull() {
         return markRepository.findAll();
     }
 
     @Override
-    public List<Mark> getMarkListByGroup(Long groupId) throws ResourceNotFoundException {
-        final List<Mark> groupMarkList = markRepository.findAllByGroup_Id(groupId);
-        if (groupMarkList.isEmpty()) throw new ResourceNotFoundException();
+    public List<Marker> getMarkListByGroup(Long groupId) throws ResourceNotFoundException {
+        final List<Marker> groupMarkerList = markRepository.findAllByGroup_Id(groupId);
+        if (groupMarkerList.isEmpty()) throw new ResourceNotFoundException();
 
-        return groupMarkList;
+        return groupMarkerList;
     }
 
     @Override
-    public Mark addMarkByGroup(Mark markToPersist, Long groupId) throws ResourceAlreadyExistsException, BadResourceException {
+    public Marker addMarkByGroup(Marker markerToPersist, Long groupId) throws ResourceAlreadyExistsException, BadResourceException {
         final Group existingGroup = groupRepository.findById(groupId)
                 .orElseThrow(BadResourceException::new);
 
-        markToPersist.setGroup(existingGroup);
-        Example<Mark> exampleMark = Example.of(markToPersist);
+        markerToPersist.setGroup(existingGroup);
+        Example<Marker> exampleMark = Example.of(markerToPersist);
 
         if (markRepository.exists(exampleMark))
             throw new ResourceAlreadyExistsException(); // 409 - conflict
 
-        return markRepository.save(markToPersist);
+        return markRepository.save(markerToPersist);
     }
 
     @Override
-    public void changeMark(Mark mark, Long markId) throws ResourceNotFoundException, BadResourceException {
+    public void changeMark(Marker marker, Long markId) throws ResourceNotFoundException, BadResourceException {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 

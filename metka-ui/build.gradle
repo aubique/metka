@@ -19,7 +19,7 @@ repositories.whenObjectAdded {
   }
 }
 
-jar.dependsOn 'npm_run_build'
+jar.dependsOn 'npm_run_prod'
 
 jar {
   from 'dist/metka-ui' into 'static'
