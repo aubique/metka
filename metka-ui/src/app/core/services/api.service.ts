@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Marker} from "../model/marker";
-import {Observable} from "rxjs";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,11 @@ export class ApiService {
     return '/api/mark/'.concat(markToIdentify.id.toString());
   }
 
-  public doGetRequest(): Observable<Array<Marker>> {
+  public doGetDefaultMarker(): Observable<Marker> {
+    return this.http.get<Marker>('/assets/mock/default-marker.json');
+  }
+
+  public fetchFullMarkerList(): Observable<Array<Marker>> {
     return this.http.get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
     //.get<Array<Marker>>('/assets/mock/get-request.json');
   }
