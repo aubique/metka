@@ -10,12 +10,12 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./features/hometag/hometag.module').then(m => m.HometagModule),
+      import('./features/home-page/home-page.module').then(m => m.HomePageModule),
   },
   {
-    path: 'survey',
+    path: 'table',
     loadChildren: () =>
-      import('./features/survey/survey.module').then(m => m.SurveyModule),
+      import('./features/table-page/table-page.module').then(m => m.TablePageModule),
   },
 ];
 

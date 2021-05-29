@@ -1,5 +1,5 @@
 {
-  "name": "metka-test",
+  "name": "metka-ui",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -12,12 +12,14 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^3.0.0-beta.0",
+    "@angular-material-components/datetime-picker": "^6.0.2",
     "@angular/animations": "~11.2.14",
     "@angular/cdk": "^11.2.13",
     "@angular/common": "~11.2.14",
     "@angular/compiler": "~11.2.14",
     "@angular/core": "~11.2.14",
     "@angular/forms": "~11.2.14",
+    "@angular/material": "^11.2.13",
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",

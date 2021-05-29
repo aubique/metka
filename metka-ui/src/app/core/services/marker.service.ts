@@ -40,4 +40,9 @@ export class MarkerService {
       this.store.defaultMarker$.next(marker);
     });
   }
+
+  public pushMarkerToStore(lat: number, lng: number, date?: Date): void {
+    const marker = {lat, lng, date} as Marker;
+    this.store.defaultMarker$.next(marker);
+  }
 }

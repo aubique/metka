@@ -1,0 +1,19 @@
+<agm-map
+  [zoom]="14"
+  [minZoom]="10"
+  [latitude]="(marker | async)?.lat || $any(latMock)"
+  [longitude]="(marker | async)?.lng || $any(lngMock)"
+  [disableDefaultUI]="true"
+  [clickableIcons]="false"
+>
+  <agm-marker
+    [markerDraggable]="DRAGGABLE"
+    [latitude]="$any((marker | async)?.lat)"
+    [longitude]="$any((marker | async)?.lng)"
+    (dragEnd)="onDragEnd(marker, $event)"
+  >
+    <agm-info-window>
+      <strong>{{ (marker | async)?.id }}</strong>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>

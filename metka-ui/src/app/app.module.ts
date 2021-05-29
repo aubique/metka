@@ -5,8 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { HometagModule } from './features/hometag/hometag.module';
-import { SurveyModule } from './features/survey/survey.module';
+import { HomePageModule } from './features/home-page/home-page.module';
+import { TablePageModule } from './features/table-page/table-page.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 
 @NgModule({
@@ -18,13 +20,20 @@ import { SurveyModule } from './features/survey/survey.module';
     BrowserModule,
     AppRoutingModule,
     // Features
-    HometagModule,
-    SurveyModule,
+    HomePageModule,
+    TablePageModule,
     // Core & Shared
     CoreModule,
     SharedModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      // Display custom icons for Stepper
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {displayDefaultIndicatorType: false},
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -28,4 +28,8 @@ export class FacadeService {
   public closeMap(): void {
     this.service.unloadMarker();
   }
+
+  public updateMarker(latNew: number, lngNew: number, dateNew?: Date): void {
+    this.service.pushMarkerToStore(latNew, lngNew, dateNew);
+  }
 }

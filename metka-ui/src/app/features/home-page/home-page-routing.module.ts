@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HometagComponent } from './hometag.component';
+import { HomePageComponent } from './home-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HometagComponent,
+    component: HomePageComponent,
   },
 ];
 
@@ -13,5 +13,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class HometagRoutingModule {
+export class HomePageRoutingModule {
 }
