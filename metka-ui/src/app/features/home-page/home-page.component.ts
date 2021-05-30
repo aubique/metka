@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FacadeService } from '../../core/services/facade.service';
+import { StudGroup } from '../../core/model/stud-group';
+import { InfoApi } from '../../core/model/info-api';
 
 @Component({
   selector: 'app-hometag',
@@ -9,23 +12,37 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HomePageComponent implements OnInit {
 
   isLinear = false;
-  secondFormGroup!: FormGroup;
-  defaultTime = new Array<number>(12, 34, 0);//FIXME info-api
+  selectForm!: FormGroup;
+  dateTimeForm!: FormGroup;
 
   studGroups: Array<any> = [
     // {value: 'group-0', viewValue: 'Undefined'},
-    {value: 'group-1', viewValue: 'Group #1'},
-    {value: 'group-2', viewValue: 'Group #2'},
+    {value: 'group-1', viewValue: 'StudGroup #1'},
+    {value: 'group-2', viewValue: 'StudGroup #2'},
   ];
-  myDatePicker: any;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _facade: FacadeService,
+    private _formBuilder: FormBuilder,
+  ) {
   }
 
   ngOnInit() {
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
+    const date = this._facade.date$.getValue() as Date;
+    this.infoApi = this._facade.info$.getValue() as InfoApi;
+
+    this.selectForm = this._formBuilder.group({selectCtrl: [null, Validators.required]});
+    this.dateTimeForm = new FormGroup({dateTimeCtrl: new FormControl(date, Validators.required)});
   }
 
+  onConfirmStepper(): void {
+    this._facade.confirmStepper();
+  }
+
+  onChangeSelect($event: Event): void {
+    this.selectForm.controls.selectCtrl
+      .valueChanges.subscribe((value) => {
+      this._facade.updateGroup(value);
+    });
+  }
 }

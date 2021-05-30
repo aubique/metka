@@ -1,6 +1,8 @@
+import { StudGroup } from './stud-group';
+import { Marker } from './marker';
+
 export interface InfoApi {
 
-  lat: number;
-  lng: number;
-  date: Date;
+  initialMarker: Marker;
+  groupList: Array<StudGroup>;
 }

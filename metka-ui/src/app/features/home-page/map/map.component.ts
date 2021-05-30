@@ -12,15 +12,13 @@ import { MarkerMock } from '../../../shared/constants/MarkerMock';
 export class MapComponent implements OnInit, OnDestroy {
 
   readonly DRAGGABLE = true;
+  readonly LAT_DEFAULT = MarkerMock.lat;
+  readonly LNG_DEFAULT = MarkerMock.lng;
 
   readonly marker: BehaviorSubject<Marker>;
-  latMock: number;
-  lngMock: number;
 
   constructor(private facade: FacadeService) {
-    this.marker = this.facade.defaultMarker$;
-    this.latMock = MarkerMock.lat;
-    this.lngMock = MarkerMock.lng;
+    this.marker = this.facade.marker$;
   }
 
   ngOnInit(): void {
@@ -32,7 +30,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   onDragEnd(marker: BehaviorSubject<Marker>, $event: google.maps.MouseEvent): void {
-    // console.log('onDragEnd', marker, #event);
+    // console.log('onDragEnd', initialMarker, #event);
     const latNew = $event.latLng.lat();
     const lngNew = $event.latLng.lng();
 

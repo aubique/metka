@@ -8,7 +8,10 @@ import { MarkerMock } from '../../shared/constants/MarkerMock';
 })
 export class StoreService {
 
-  public defaultMarker$ = new BehaviorSubject<Marker>(MarkerMock);
+  public markerCurrent$ = new BehaviorSubject<Marker>(MarkerMock);
+  public dateCurrent$ = new BehaviorSubject<Date>(new Date());
+  public groupSelected$ = new BehaviorSubject(null);
+
   public markerSub = new Subscription();
 
   constructor() {

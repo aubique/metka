@@ -17,8 +17,20 @@ export class FacadeService {
   ) {
   }
 
-  get defaultMarker$(): BehaviorSubject<Marker> {
-    return this.store.defaultMarker$;
+  get marker$(): BehaviorSubject<Marker> {
+    return this.store.markerCurrent$;
+  }
+
+  get date$(): BehaviorSubject<Date> {
+    return this.store.dateCurrent$;
+  }
+
+  get group$(): BehaviorSubject<any> {
+    return this.store.groupSelected$;
+  }
+
+  public updateGroup(newSelect: any) {//FIXME define select
+    this.store.groupSelected$.next(newSelect);
   }
 
   public openMap(): void {
@@ -31,5 +43,9 @@ export class FacadeService {
 
   public updateMarker(latNew: number, lngNew: number, dateNew?: Date): void {
     this.service.pushMarkerToStore(latNew, lngNew, dateNew);
+  }
+
+  public confirmStepper(): void {
+    this.service.postNewMarkerToApi();
   }
 }

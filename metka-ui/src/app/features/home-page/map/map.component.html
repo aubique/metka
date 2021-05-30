@@ -1,8 +1,8 @@
 <agm-map
   [zoom]="14"
   [minZoom]="10"
-  [latitude]="(marker | async)?.lat || $any(latMock)"
-  [longitude]="(marker | async)?.lng || $any(lngMock)"
+  [latitude]="(marker | async)?.lat || $any(LAT_DEFAULT)"
+  [longitude]="(marker | async)?.lng || $any(LNG_DEFAULT)"
   [disableDefaultUI]="true"
   [clickableIcons]="false"
 >

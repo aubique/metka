@@ -1,74 +1,71 @@
-<!--<div class="">-->
-<!--  <app-map></app-map>-->
-<!--</div>-->
-
 <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
 <mat-vertical-stepper [linear]="isLinear" #stepper>
   <!--Step 1: Groups-->
-  <mat-step>
+  <mat-step [stepControl]="selectForm">
 
-    <ng-template matStepLabel>Choose your group</ng-template>
-    <mat-form-field appearance="fill">
-      <mat-label>Groups</mat-label>
-      <mat-select>
-        <mat-option>Undefined</mat-option>
-        <mat-option *ngFor="let studGroup of studGroups" [value]="studGroup.value">
-          {{studGroup.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <!--<mat-form-field>-->
-    <!--  <mat-label>Name</mat-label>-->
-    <!--  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
-    <!--</mat-form-field>-->
-    <div>
-      <button mat-button matStepperNext>Next</button>
-    </div>
+    <form [formGroup]="selectForm">
+      <ng-template matStepLabel>Choose your group</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Groups</mat-label>
+        <mat-select
+          formControlName="selectCtrl"
+          (change)="onChangeSelect($event)"
+        >
+          <mat-option>Undefined</mat-option>
+          <mat-option
+            *ngFor="let studGroup of studGroups"
+            [value]="studGroup.value"
+          >
+            {{studGroup.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
 
   </mat-step>
-
   <!--Step 2: Time-->
-  <mat-step state="phone">
+  <mat-step [stepControl]="dateTimeForm" state="phone">
 
-    <ng-template matStepLabel>Choose a date & time</ng-template>
-    <mat-form-field>
-      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Time for marker" [(ngModel)]="myDatePicker">
-      <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #picker
-                               [defaultTime]="defaultTime"
-                               [showSpinners]="true"
-                               [showSeconds]="false"
-                               [stepMinute]="1">
-      </ngx-mat-datetime-picker>
-    </mat-form-field>
-    <!--<ng-template matStepLabel>Fill out your address</ng-template>-->
-    <!--<mat-form-field>-->
-    <!--  <mat-label>Address</mat-label>-->
-    <!--  <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"-->
-    <!--         required>-->
-    <!--</mat-form-field>-->
+    <form [formGroup]="dateTimeForm">
+      <mat-form-field>
+        <input matInput
+               formControlName="dateTimeCtrl"
+               placeholder="Time for initialMarker"
+               [ngxMatDatetimePicker]="picker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker
+                                 [showSpinners]="true"
+                                 [showSeconds]="false"
+                                 [stepMinute]="1"
+        >
+        </ngx-mat-datetime-picker>
+      </mat-form-field>
+      <ng-template matStepLabel>Choose a date & time</ng-template>
+    </form>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
     </div>
 
   </mat-step>
-
   <!--Step 3: Map-->
   <mat-step state="chat">
+
     <ng-template matStepLabel>Tag your location</ng-template>
-
     <app-map></app-map>
-
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
     </div>
-  </mat-step>
 
+  </mat-step>
   <!--Step 4: Done-->
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
@@ -77,7 +74,7 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button>Confirm</button>
+      <button mat-button (click)="onConfirmStepper()">Confirm</button>
     </div>
 
   </mat-step>
