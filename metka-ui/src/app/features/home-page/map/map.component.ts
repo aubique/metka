@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FacadeService } from '../../../core/services/facade.service';
 import { BehaviorSubject } from 'rxjs';
 import { Marker } from '../../../core/model/marker';
@@ -15,6 +15,7 @@ export class MapComponent implements OnInit, OnDestroy {
   readonly LAT_DEFAULT = MarkerMock.lat;
   readonly LNG_DEFAULT = MarkerMock.lng;
 
+  @Input()
   readonly marker: BehaviorSubject<Marker>;
 
   constructor(private facade: FacadeService) {
@@ -22,11 +23,9 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.facade.openMap();
   }
 
   ngOnDestroy(): void {
-    this.facade.closeMap();
   }
 
   onDragEnd(marker: BehaviorSubject<Marker>, $event: google.maps.MouseEvent): void {
@@ -34,6 +33,6 @@ export class MapComponent implements OnInit, OnDestroy {
     const latNew = $event.latLng.lat();
     const lngNew = $event.latLng.lng();
 
-    this.facade.updateMarker(latNew, lngNew);
+    this.facade.updateMarkerWithCoords(latNew, lngNew);
   }
 }

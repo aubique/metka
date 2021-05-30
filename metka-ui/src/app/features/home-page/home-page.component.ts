@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FacadeService } from '../../core/services/facade.service';
-import { StudGroup } from '../../core/model/stud-group';
 import { InfoApi } from '../../core/model/info-api';
 
 @Component({
@@ -9,9 +8,11 @@ import { InfoApi } from '../../core/model/info-api';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnDestroy {
 
-  isLinear = false;
+  readonly IS_LINEAR = false;
+  private _infoApi: InfoApi | undefined;
+
   selectForm!: FormGroup;
   dateTimeForm!: FormGroup;
 
@@ -28,11 +29,17 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._facade.openMap();
+    this._infoApi = this._facade.info;
+
     const date = this._facade.date$.getValue() as Date;
-    this.infoApi = this._facade.info$.getValue() as InfoApi;
 
     this.selectForm = this._formBuilder.group({selectCtrl: [null, Validators.required]});
     this.dateTimeForm = new FormGroup({dateTimeCtrl: new FormControl(date, Validators.required)});
+  }
+
+  ngOnDestroy(): void {
+    this._facade.closeMap();
   }
 
   onConfirmStepper(): void {

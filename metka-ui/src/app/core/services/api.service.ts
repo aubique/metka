@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Marker } from '../model/marker';
 import { Observable } from 'rxjs';
+import { InfoApi } from '../model/info-api';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,10 @@ export class ApiService {
     };
   }
 
+  private static getInfoApiUrl(): string {
+    return 'api/info';
+  }
+
   //FIXME: expand controller to work w/ groupList
   private static getTestGroupIdUrl(): string {
     return '/api/group/1';
@@ -32,13 +37,20 @@ export class ApiService {
     return '/api/initialMarker/'.concat(markToIdentify.id?.toString() ?? '0');//FIXME: drop out DELETE method
   }
 
-  public doGetDefaultMarker(): Observable<Marker> {
-    return this.http.get<Marker>('/assets/mock/default-initialMarker.json');
+  public fetchFullMarkerList(): Observable<Array<Marker>> {
+    return this.http
+      .get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
+    //.get<Array<Marker>>('/assets/mock/get-request.json');
   }
 
-  public fetchFullMarkerList(): Observable<Array<Marker>> {
-    return this.http.get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
-    //.get<Array<Marker>>('/assets/mock/get-request.json');
+  public fetchInfoApi(): Observable<InfoApi> {
+    return this.http
+      // .get<InfoApi>(ApiService.getInfoApiUrl());
+      .get<InfoApi>('/assets/mock/default-info-api.json');
+  }
+
+  public doGetDefaultMarker(): Observable<Marker> {
+    return this.http.get<Marker>('/assets/mock/default-initialMarker.json');
   }
 
   public doPostRequest(markToCreate: Marker): Observable<Marker> {

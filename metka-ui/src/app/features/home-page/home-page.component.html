@@ -1,8 +1,8 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+<button mat-raised-button (click)="IS_LINEAR = !IS_LINEAR" id="toggle-linear">
+  {{!IS_LINEAR ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
-<mat-vertical-stepper [linear]="isLinear" #stepper>
+<mat-vertical-stepper [linear]="IS_LINEAR" #stepper>
   <!--Step 1: Groups-->
   <mat-step [stepControl]="selectForm">
 

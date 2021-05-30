@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { StoreService } from './store.service';
-import { Subscription } from 'rxjs';
 import { Marker } from '../model/marker';
 import { FactoryHelper } from '../../shared/util/factory-helper';
+import { SubService } from '../subscriptions/sub.service';
+import { UnsubService } from '../subscriptions/unsub.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,28 +19,13 @@ export class MarkerService {
   ) {
   }
 
-  public loadMarker(): void {
-    this.store.markerSub = this.subscribeMarkerFromApiToStore();
-    this.pushMarkerFromLcToStore();
-  }
-
-  public unloadMarker(): void {
-    this.store.markerSub.unsubscribe();
-  }
-
-  private pushMarkerFromLcToStore(): void {
+  // Push to the store if LC-item exists
+  public loadMarkerFromLc(): void {
     const item: string | null = localStorage.getItem(this.MARKER_LC_NAME);
 
-    // Push to the store if LC-item exists
     if (item) {
       this.store.markerCurrent$.next(JSON.parse(item) as Marker);
     }
-  }
-
-  private subscribeMarkerFromApiToStore(): Subscription {
-    return this.api.doGetDefaultMarker().subscribe(marker => {
-      this.store.markerCurrent$.next(marker);
-    });
   }
 
   public pushMarkerToStore(lat: number, lng: number, date?: Date): void {
