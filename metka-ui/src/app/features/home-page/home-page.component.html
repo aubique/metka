@@ -1,8 +1,8 @@
-<button mat-raised-button (click)="IS_LINEAR = !IS_LINEAR" id="toggle-linear">
-  {{!IS_LINEAR ? 'Enable linear mode' : 'Disable linear mode'}}
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
-<mat-vertical-stepper [linear]="IS_LINEAR" #stepper>
+<mat-vertical-stepper [linear]="isLinear" #stepper>
   <!--Step 1: Groups-->
   <mat-step [stepControl]="selectForm">
 
@@ -12,14 +12,14 @@
         <mat-label>Groups</mat-label>
         <mat-select
           formControlName="selectCtrl"
-          (change)="onChangeSelect($event)"
         >
           <mat-option>Undefined</mat-option>
+          <!--for(var studGroup: InfoApi.groupList){sout(studGroup.name)}-->
           <mat-option
-            *ngFor="let studGroup of studGroups"
-            [value]="studGroup.value"
+            *ngFor="let studGroup of (info$ | async)?.groupList"
+            [value]="studGroup.id"
           >
-            {{studGroup.viewValue}}
+            {{studGroup.groupname}}
           </mat-option>
         </mat-select>
       </mat-form-field>

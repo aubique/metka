@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from './store.service';
 import { ApiService } from './api.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Marker } from '../model/marker';
 import { MarkerService } from './marker.service';
 import { InfoApi } from '../model/info-api';
@@ -22,24 +22,28 @@ export class FacadeService {
   ) {
   }
 
-  get marker$(): BehaviorSubject<Marker> {
-    return this._store.markerCurrent$;
+  get info(): InfoApi | undefined {
+    return this._store.infoApi;
+  }
+
+  get info$(): Observable<InfoApi> {
+    return this._store.infoRetrieved$.asObservable();
+  }
+
+  get marker$(): Observable<Marker> {
+    return this._store.markerCurrent$.asObservable();
   }
 
   get date$(): BehaviorSubject<Date> {
     return this._store.dateCurrent$;
   }
 
-  get info(): InfoApi | undefined {
-    return this._store.infoApi;
+  get group$(): BehaviorSubject<any> {
+    return this._store.groupSelected$;
   }
 
-  get group$(): Observable<any> {
-    return this._store.groupSelected$.asObservable();
-  }
-
-  public updateGroup(newSelect: any) {//FIXME define select
-    this._store.groupSelected$.next(newSelect);
+  public updateGroup(selectedId: number) {//
+    this._store.groupSelected$.next(selectedId);
   }
 
   public openMap(): void {
@@ -48,14 +52,14 @@ export class FacadeService {
   }
 
   public closeMap(): void {
-    this._subscribe.onInfoGetRequest();
+    this._unsubscribe.onInfoGetRequest();
   }
 
   public updateMarkerWithCoords(latNew: number, lngNew: number, dateNew?: Date): void {
-    this._service.pushMarkerToStore(latNew, lngNew, dateNew);
+    this._service.storeNewMarker(latNew, lngNew, dateNew);
   }
 
   public confirmStepper(): void {
-    this._service.postNewMarkerToApi();
+    this._service.postDtoMarker();
   }
 }

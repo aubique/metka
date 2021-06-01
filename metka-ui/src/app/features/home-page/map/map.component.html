@@ -10,7 +10,7 @@
     [markerDraggable]="DRAGGABLE"
     [latitude]="$any((marker | async)?.lat)"
     [longitude]="$any((marker | async)?.lng)"
-    (dragEnd)="onDragEnd(marker, $event)"
+    (dragEnd)="onDragEnd($event)"
   >
     <agm-info-window>
       <strong>{{ (marker | async)?.id }}</strong>

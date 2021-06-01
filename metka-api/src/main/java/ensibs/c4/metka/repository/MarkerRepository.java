@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MarkRepository extends JpaRepository<Marker, Long> {
+public interface MarkerRepository extends JpaRepository<Marker, Long> {
 
-    List<Marker> findAllByGroup_Id(Long groupId);
+    List<Marker> findAllByStudgroup_Id(Long groupId);
 
     //TODO: findByDate
 }

@@ -25,7 +25,12 @@ export class SubService extends BaseSubService {
   public onInfoGetRequest(): void {
     this.infoApiGetRequestSub = this.api.fetchInfoApi()
       .subscribe((infoApiFetched) => {
-        this.store.infoApi = infoApiFetched;
+        // console.log('onInfoGetRequest TRIGGERED');
+        // console.log(infoApiFetched);
+
+        this.store.infoRetrieved$.next(infoApiFetched);
+        // this.store.groupList$.next(infoApiFetched.groupList);//TODO.w whether should be used or not for home-page
+        this.store.markerCurrent$.next(infoApiFetched.initialMarker);
       });
   }
 }

@@ -5,7 +5,7 @@ import ensibs.c4.metka.exception.BadResourceException;
 import ensibs.c4.metka.exception.ResourceAlreadyExistsException;
 import ensibs.c4.metka.exception.ResourceNotFoundException;
 import ensibs.c4.metka.model.Marker;
-import ensibs.c4.metka.service.MarkService;
+import ensibs.c4.metka.service.MarkerService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,19 +26,19 @@ public class ApiController {
     private Gson gson;
 
     @Autowired
-    private MarkService markService;
+    private MarkerService markerService;
 
     @GetMapping("groups")
     public ResponseEntity<List<Marker>> readMarkAll() {
-        final List<Marker> groupMarkers = markService.getMarkListFull();
+        final List<Marker> groupMarkers = markerService.getMarkListFull();
         // 200
         return ResponseEntity.ok(groupMarkers);
     }
 
-    @GetMapping("group/{groupId:[\\d]+")
+    @GetMapping("group/{groupId:[\\d]+}")
     public ResponseEntity<List<Marker>> readMarkSingle(@PathVariable Long groupId) {
         try {
-            final List<Marker> groupMarker = markService.getMarkListByGroup(groupId);
+            final List<Marker> groupMarker = markerService.getMarkerListByGroup(groupId);
             // 200
             return ResponseEntity.ok(groupMarker);
         } catch (ResourceNotFoundException ex) {
@@ -52,9 +52,10 @@ public class ApiController {
     public ResponseEntity<?> createMark(@PathVariable Long groupId, @RequestBody Marker postMarker)
             throws URISyntaxException {
         try {
-            final Marker newMarker = markService.addMarkByGroup(postMarker, groupId);
+            System.out.println("TRIGGERED GET");
+            final Marker newMarker = markerService.addMarkerByGroup(postMarker, groupId);
             // 201
-            return ResponseEntity.created(new URI("/rest/mark/" + newMarker.getId())).body(newMarker);
+            return ResponseEntity.created(new URI("/api/marker/" + newMarker.getId())).body(newMarker);
         } catch (ResourceAlreadyExistsException ex) {
             // 409
             log.error(ex.getMessage());
@@ -69,7 +70,7 @@ public class ApiController {
     @DeleteMapping("mark/{markId:[\\d]}")
     public ResponseEntity<Void> deleteMark(@PathVariable Long markId) {
         try {
-            markService.removeMark(markId);
+            markerService.removeMarker(markId);
             // 200
             return ResponseEntity.ok().build();
         } catch (ResourceNotFoundException ex) {

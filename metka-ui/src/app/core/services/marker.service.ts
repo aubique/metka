@@ -3,8 +3,7 @@ import { ApiService } from './api.service';
 import { StoreService } from './store.service';
 import { Marker } from '../model/marker';
 import { FactoryHelper } from '../../shared/util/factory-helper';
-import { SubService } from '../subscriptions/sub.service';
-import { UnsubService } from '../subscriptions/unsub.service';
+import { DtoMarker } from '../model/dto-marker';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +18,7 @@ export class MarkerService {
   ) {
   }
 
-  // Push to the store if LC-item exists
+  // Push to the StoreService if LC-item (marker) exists
   public loadMarkerFromLc(): void {
     const item: string | null = localStorage.getItem(this.MARKER_LC_NAME);
 
@@ -28,16 +27,20 @@ export class MarkerService {
     }
   }
 
-  public pushMarkerToStore(lat: number, lng: number, date?: Date): void {
+  // Push new coords as Marker to the StoreService
+  public storeNewMarker(lat: number, lng: number, date?: Date): void {
     const marker = {lat, lng, date} as Marker;
+
     this.store.markerCurrent$.next(marker);
   }
 
-  public postNewMarkerToApi(): void {
+  // Compose DtoMarker to do POST request
+  public postDtoMarker(): void {
+    const groupIdFromStore = this.store.groupSelected$.getValue() as number;
     const markerFromStore = this.store.markerCurrent$.getValue() as Marker;
     const dateFromStore = this.store.dateCurrent$.getValue() as Date;
+    const dtoMarker = FactoryHelper.newDtoMarker(markerFromStore, dateFromStore) as DtoMarker;
 
-    const markerForApi = FactoryHelper.newMarker(markerFromStore, dateFromStore) as Marker;
-    this.api.doPostRequest(markerForApi);
+    this.api.doPostRequest(groupIdFromStore, dtoMarker);
   }
 }
