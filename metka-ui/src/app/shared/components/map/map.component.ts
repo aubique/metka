@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FacadeService } from '../../../core/services/facade.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Marker } from '../../../core/model/marker';
-import { MarkerMock } from '../../../shared/constants/MarkerMock';
+import { MarkerMock } from '../../constants/MarkerMock';
 
 @Component({
   selector: 'app-map',
@@ -28,7 +28,6 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   onDragEnd($event: google.maps.MouseEvent): void {
-    // console.log('onDragEnd', initialMarker, #event);
     const latNew = $event.latLng.lat();
     const lngNew = $event.latLng.lng();
 

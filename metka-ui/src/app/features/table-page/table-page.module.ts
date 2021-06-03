@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TablePageRoutingModule } from './table-page-routing.module';
 import { TablePageComponent } from './table-page.component';
+import { TablePageRoutingModule } from './table-page-routing.module';
 
 
 @NgModule({
   declarations: [
-    TablePageComponent
+    TablePageComponent,
   ],
   imports: [
     CommonModule,
-    TablePageRoutingModule
-  ]
+    TablePageRoutingModule,
+  ],
 })
-export class TablePageModule { }
+export class TablePageModule {
+}

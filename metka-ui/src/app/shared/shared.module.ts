@@ -11,10 +11,20 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MapComponent,
+  ],
   imports: [
     // Angular
     CommonModule,
@@ -28,6 +38,14 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatInputModule,
     MatButtonModule,
     MatStepperModule,
+    MatSelectModule,
+    MatOptionModule,
+    NgxMatDatetimePickerModule,
+    MatDatepickerModule,
+    MatInputModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
     // 3rd-party
     FontAwesomeModule,
     AngularSvgIconModule.forRoot(),
@@ -35,6 +53,7 @@ import { MatStepperModule } from '@angular/material/stepper';
       apiKey: 'AIzaSyByf9KyDr1TBS4fcEjJyeUatCs1TPKstgk',
     })], exports: [
     // Angular
+    MapComponent,
     FormsModule,
     ReactiveFormsModule,
     // Material
@@ -45,6 +64,14 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatInputModule,
     MatButtonModule,
     MatStepperModule,
+    MatSelectModule,
+    MatOptionModule,
+    NgxMatDatetimePickerModule,
+    MatDatepickerModule,
+    MatInputModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
     // 3d-party libs
     FontAwesomeModule,
     AngularSvgIconModule,
