@@ -22,4 +22,8 @@ export class UnsubService extends BaseSubService {
   public onInfoGetRequest(): void {
     this.infoApiGetRequestSub.unsubscribe();
   }
+
+  public onMarkerListGetRequest(): void {
+    this.markerGetRequestSubscription.unsubscribe();
+  }
 }

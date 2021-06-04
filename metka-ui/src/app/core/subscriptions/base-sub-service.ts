@@ -6,6 +6,7 @@ export abstract class BaseSubService {
 
   protected markerGetRequestSubscription!: Subscription;
   protected infoApiGetRequestSub!: Subscription;
+  protected markerListGetRequestSub!: Subscription;
 
   protected constructor(
     protected api: ApiService,
@@ -16,4 +17,6 @@ export abstract class BaseSubService {
   abstract onMarkerGetRequest(): void;
 
   abstract onInfoGetRequest(): void;
+
+  abstract onMarkerListGetRequest(): void;
 }
