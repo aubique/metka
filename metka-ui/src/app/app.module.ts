@@ -9,6 +9,7 @@ import { HomePageModule } from './features/home-page/home-page.module';
 import { TablePageModule } from './features/table-page/table-page.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     BrowserAnimationsModule,
   ],
   providers: [
+    DatePipe,
     {
       // Display custom icons for Stepper
       provide: STEPPER_GLOBAL_OPTIONS,

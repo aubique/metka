@@ -16,16 +16,16 @@ export class SubService extends BaseSubService {
   }
 
   public onMarkerGetRequest(): void {
-    this.markerGetRequestSubscription = this.api.doGetDefaultMarker()
-      .subscribe((markerFetched) => {
-        this.store.markerCurrent$.next(markerFetched);
-      });
+  //   this.markerGetRequestSubscription = this.api.doGetDefaultMarker()
+  //     .subscribe((markerFetched) => {
+  //       this.store.markerCurrent$.next(markerFetched);
+  //     });
   }
 
   public onInfoGetRequest(): void {
     this.infoApiGetRequestSub = this.api.fetchInfoApi()
       .subscribe((infoApiFetched) => {
-        // console.log('onInfoGetRequest TRIGGERED');
+        // console.log('onInfoGetRequest() TRIGGERED');//FIXME.d.stdout
         // console.log(infoApiFetched);
 
         this.store.infoRetrieved$.next(infoApiFetched);

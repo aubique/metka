@@ -47,7 +47,7 @@
         >
         </ngx-mat-datetime-picker>
       </mat-form-field>
-      <ng-template matStepLabel>Choose a date & time</ng-template>
+      <ng-template matStepLabel>Choose a infoDate & time</ng-template>
     </form>
     <div>
       <button mat-button matStepperPrevious>Back</button>
@@ -62,7 +62,7 @@
     <app-map></app-map>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
+      <button mat-button matStepperNext (click)="onConfirmStepper()">Confirm</button>
     </div>
 
   </mat-step>
@@ -72,9 +72,8 @@
 
     <p>You are now done.</p>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="onConfirmStepper()">Confirm</button>
+      <!--<button mat-button matStepperPrevious>Back</button>-->
+      <button mat-button (click)="stepper.reset();resetDateTimeCtrl()">New marker</button>
     </div>
 
   </mat-step>

@@ -3,7 +3,7 @@ import { Marker } from './marker';
 
 export interface InfoApi {
 
-  date: Date;
+  infoDate: Date;
   initialMarker: Marker;
   groupList: Array<StudGroup>;
 }

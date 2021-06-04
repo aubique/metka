@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 // Build & test annotations
 @Builder
@@ -21,11 +22,15 @@ public class Marker {
 
     @Expose
     @Column(name = "latitude")
-    private float lat;
+    private double lat;
 
     @Expose
     @Column(name = "longitude")
-    private float lng;
+    private double lng;
+
+    @Expose
+    @Column(name = "assumed_creation_date")
+    private Date mrkdate;
 
     @ToString.Exclude
     @ManyToOne

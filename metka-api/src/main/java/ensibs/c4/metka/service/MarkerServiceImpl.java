@@ -25,7 +25,20 @@ public class MarkerServiceImpl implements MarkerService {
     MarkerRepository markerRepository;
 
     @Override
-    public List<Marker> getMarkListFull() {
+    public List<Group> getGroupList() throws ResourceNotFoundException {
+        final List<Group> groupList = groupRepository.findAll();
+        if (groupList.isEmpty()) throw new ResourceNotFoundException();
+
+        return groupList;
+    }
+
+    @Override
+    public Marker getInitialMarker() throws ResourceNotFoundException {
+        return markerRepository.findById(0L).orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @Override
+    public List<Marker> getMarkerListFull() {
         return markerRepository.findAll();
     }
 
@@ -41,6 +54,7 @@ public class MarkerServiceImpl implements MarkerService {
     @Transactional
     public Marker addMarkerByGroup(Marker markerToPersist, Long groupId)
             throws ResourceAlreadyExistsException, BadResourceException {
+        System.out.println(markerToPersist.getMrkdate());
 
         final Group existingGroup = groupRepository.findById(groupId)
                 .orElseThrow(BadResourceException::new);

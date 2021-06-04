@@ -24,11 +24,6 @@ export class ApiService {
     return 'api/info';
   }
 
-  //FIXME: expand controller to work w/ groupList
-  private static getTestGroupIdUrl(): string {
-    return '/api/group/1';
-  }
-
   private static getGroupIdUrl(groupId: number) {
     return '/api/group/'.concat(groupId.toString());
   }
@@ -42,37 +37,30 @@ export class ApiService {
     return '/api/initialMarker/'.concat(markerToIdentify.id?.toString() ?? '0');//FIXME: drop out DELETE method
   }
 
-  public fetchFullMarkerList(): Observable<Array<Marker>> {
-    return this.http
-      .get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
-    //.get<Array<Marker>>('/assets/mock/get-request.json');
-  }
+  // public fetchFullMarkerList(): Observable<Array<Marker>> {
+  //   return this.http
+  //     .get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
+  //   //.get<Array<Marker>>('/assets/mock/get-request.json');
+  // }
 
   public fetchInfoApi(): Observable<InfoApi> {
     return this.http
-      // .get<InfoApi>(ApiService.getInfoApiUrl());
-      .get<InfoApi>('/assets/mock/default-info-api.json');
-  }
-
-  public doGetDefaultMarker(): Observable<Marker> {
-    return this.http.get<Marker>('/assets/mock/default-initialMarker.json');
+      .get<InfoApi>(ApiService.getInfoApiUrl());
+    // .get<InfoApi>('/assets/mock/default-info-api.json');
   }
 
   public doPostRequest(groupId: number, markerToCreate: DtoMarker): void {
-    console.log('POST');
-    console.log(ApiService.getGroupIdUrl(groupId));
+    // console.log('POST');//FIXME.d.stdout
+    // console.log(markerToCreate);
+    // console.log(markerToCreate.mrkdate);
+
     this.http
       .post<void>(ApiService.getGroupIdUrl(groupId), markerToCreate, this.httpOptions)
       .subscribe();
     //.get<Marker>('/assets/mock/put-request.json');
   }
 
-  // public doPostRequest(markToCreate: Marker): Observable<Marker> {
-  //   return this.http.post<Marker>(ApiService.getTestGroupIdUrl(), markToCreate, this.httpOptions);
-  //   //.get<Marker>('/assets/mock/put-request.json');
+  // public doDeleteRequest(markToDelete: Marker): Observable<any> {
+  //   return this.http.delete<void>(ApiService.getMarkIdUrl(markToDelete));
   // }
-
-  public doDeleteRequest(markToDelete: Marker): Observable<any> {
-    return this.http.delete<void>(ApiService.getMarkIdUrl(markToDelete));
-  }
 }

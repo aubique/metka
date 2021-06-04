@@ -16,6 +16,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   selectForm!: FormGroup;
   dateTimeForm!: FormGroup;
   private subSelectCtrl!: Subscription;
+  private subDateTimeCtrl!: Subscription;
 
   constructor(
     private _facade: FacadeService,
@@ -27,14 +28,19 @@ export class HomePageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Initialize the subscriptions to do GET reqs
     this._facade.openMap();
-
-    // const date = this._facade.info?.initialMarker.date;//TODO find out whether DateFromApi is needed or not
-    const date = new Date();
+    // const infoDate = this._facade.info?.initialMarker.infoDate;//TODO find out whether DateFromApi is needed or not
 
     // FormGroups for step 1 & step 2
-    this.selectForm = this._formBuilder.group({selectCtrl: [null, Validators.required]});
-    this.dateTimeForm = new FormGroup({dateTimeCtrl: new FormControl(date, Validators.required)});
+    this.selectForm = this._formBuilder.group(
+      {selectCtrl: [null, Validators.required]});
+    this.dateTimeForm = new FormGroup(
+      {dateTimeCtrl: new FormControl(new Date(), Validators.required)});
 
+    // Subscribe on dateTimePicker
+    this.subDateTimeCtrl = this.dateTimeForm.controls.dateTimeCtrl
+      .valueChanges.subscribe((date: Date) => {
+        this._facade.updateDate(date);
+      });
     // Subscribe on selectionChange
     this.subSelectCtrl = this.selectForm.controls.selectCtrl
       .valueChanges.subscribe((id: number) => {
@@ -49,5 +55,9 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   onConfirmStepper(): void {
     this._facade.confirmStepper();
+  }
+
+  resetDateTimeCtrl(): void {//TODO assert validators
+    this.dateTimeForm.reset({'dateTimeCtrl': new Date()});
   }
 }

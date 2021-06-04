@@ -34,8 +34,8 @@ export class FacadeService {
     return this._store.markerCurrent$.asObservable();
   }
 
-  get date$(): BehaviorSubject<Date> {
-    return this._store.dateCurrent$;
+  get date$(): Observable<Date> {
+    return this._store.dateCurrent$.asObservable();
   }
 
   get group$(): BehaviorSubject<any> {
@@ -44,6 +44,10 @@ export class FacadeService {
 
   public updateGroup(selectedId: number) {//
     this._store.groupSelected$.next(selectedId);
+  }
+
+  public updateDate(date: Date): void{
+    this._store.dateCurrent$.next(date);
   }
 
   public openMap(): void {

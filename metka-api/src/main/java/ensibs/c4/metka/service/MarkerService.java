@@ -3,13 +3,18 @@ package ensibs.c4.metka.service;
 import ensibs.c4.metka.exception.BadResourceException;
 import ensibs.c4.metka.exception.ResourceAlreadyExistsException;
 import ensibs.c4.metka.exception.ResourceNotFoundException;
+import ensibs.c4.metka.model.Group;
 import ensibs.c4.metka.model.Marker;
 
 import java.util.List;
 
 public interface MarkerService {
 
-    List<Marker> getMarkListFull();
+    List<Group> getGroupList() throws ResourceNotFoundException;
+
+    Marker getInitialMarker() throws ResourceNotFoundException;
+
+    List<Marker> getMarkerListFull();
 
     List<Marker> getMarkerListByGroup(Long groupId) throws ResourceNotFoundException;
 
