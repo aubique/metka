@@ -11,7 +11,7 @@ import { MarkerMock } from '../../constants/MarkerMock';
 })
 export class MapComponent implements OnInit, OnDestroy {
 
-  readonly DRAGGABLE = true;
+  // readonly DRAGGABLE = true;
   readonly LAT_DEFAULT = MarkerMock.lat;
   readonly LNG_DEFAULT = MarkerMock.lng;
 
@@ -31,6 +31,6 @@ export class MapComponent implements OnInit, OnDestroy {
     const latNew = $event.latLng.lat();
     const lngNew = $event.latLng.lng();
 
-    this._facade.updateMarkerWithCoords(latNew, lngNew);
+    this._facade.moveMarkerOnTheMap(latNew, lngNew);
   }
 }

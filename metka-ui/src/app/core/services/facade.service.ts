@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { StoreService } from './store.service';
 import { ApiService } from './api.service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Marker } from '../model/marker';
 import { MarkerService } from './marker.service';
 import { InfoApi } from '../model/info-api';
 import { SubService } from '../subscriptions/sub.service';
 import { UnsubService } from '../subscriptions/unsub.service';
+import { DtoMarker } from '../model/dto-marker';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,10 @@ export class FacadeService {
     return this._store.markerCurrent$.asObservable();
   }
 
+  get markerList$(): Observable<Array<DtoMarker>> {
+    return this._store.listOfMarkers$.asObservable();
+  }
+
   get date$(): Observable<Date> {
     return this._store.dateCurrent$.asObservable();
   }
@@ -46,7 +51,7 @@ export class FacadeService {
     this._store.groupSelected$.next(selectedId);
   }
 
-  public updateDate(date: Date): void{
+  public updateDate(date: Date): void {
     this._store.dateCurrent$.next(date);
   }
 
@@ -59,8 +64,20 @@ export class FacadeService {
     this._unsubscribe.onInfoGetRequest();
   }
 
-  public updateMarkerWithCoords(latNew: number, lngNew: number, dateNew?: Date): void {
+  public openTable(): void {
+    this._subscribe.onMarkerListGetRequest();
+  }
+
+  public closeTable(): void {
+    this._unsubscribe.onMarkerListGetRequest();
+  }
+
+  public moveMarkerOnTheMap(latNew: number, lngNew: number, dateNew?: Date): void {
     this._service.storeNewMarker(latNew, lngNew, dateNew);
+  }
+
+  public updateSelectedMarker(newMarker: Marker): void {
+    this._store.markerCurrent$.next(newMarker);
   }
 
   public confirmStepper(): void {

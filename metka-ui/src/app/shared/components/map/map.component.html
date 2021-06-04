@@ -7,7 +7,7 @@
   [clickableIcons]="false"
 >
   <agm-marker
-    [markerDraggable]="DRAGGABLE"
+    [markerDraggable]="$any((marker | async)?.draggable)"
     [latitude]="$any((marker | async)?.lat)"
     [longitude]="$any((marker | async)?.lng)"
     (dragEnd)="onDragEnd($event)"

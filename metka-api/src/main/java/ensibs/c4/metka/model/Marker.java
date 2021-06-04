@@ -16,6 +16,7 @@ import java.util.Date;
 @Table(name = "marker")
 public class Marker {
 
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -12,6 +12,7 @@ export class StoreService {
   public markerCurrent$ = new BehaviorSubject<Marker>(MarkerMock);
   public dateCurrent$ = new BehaviorSubject<Date>(new Date());
   public groupSelected$ = new BehaviorSubject<number>(1);
+  public listOfMarkers$ = new BehaviorSubject<Array<Marker>>([MarkerMock]);
   public infoRetrieved$ = new Subject<InfoApi>();
 
   public infoApi: InfoApi | undefined;

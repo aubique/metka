@@ -34,11 +34,10 @@ export class MarkerService {
 
   // Push new coords as Marker to the StoreService and LocalStorage
   public storeNewMarker(lat: number, lng: number, date?: Date): void {
-    const marker = {lat, lng, date} as Marker;
+    const marker = {draggable: true, lat, lng, date} as Marker;
 
     this.store.markerCurrent$.next(marker);
 
-    console.log('LC.setItem() TRIGGERED');
     localStorage.setItem(MarkerService.MARKER_LC_NAME, JSON.stringify(marker));
   }
 
