@@ -19,6 +19,10 @@ import {
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { MapComponent } from './components/map/map.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { TablePageRoutingModule } from '../features/table-page/table-page-routing.module';
 
 
 @NgModule({
@@ -41,11 +45,12 @@ import { MapComponent } from './components/map/map.component';
     MatSelectModule,
     MatOptionModule,
     NgxMatDatetimePickerModule,
-    MatDatepickerModule,
-    MatInputModule,
-    NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
+    TablePageRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     // 3rd-party
     FontAwesomeModule,
     AngularSvgIconModule.forRoot(),
@@ -67,11 +72,12 @@ import { MapComponent } from './components/map/map.component';
     MatSelectModule,
     MatOptionModule,
     NgxMatDatetimePickerModule,
-    MatDatepickerModule,
-    MatInputModule,
-    NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
+    TablePageRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     // 3d-party libs
     FontAwesomeModule,
     AngularSvgIconModule,
