@@ -1,4 +1,21 @@
 <div class="mat-elevation-z0">
+
+  <!--<mat-select (selectionChange)="onGroupChange($event)">-->
+  <!--  <mat-option>Undefined</mat-option>-->
+  <!--  <mat-option-->
+  <!--    *ngFor="let studGroup of (info$ | async)?.groupList"-->
+  <!--    [value]="studGroup.id"-->
+  <!--  >-->
+  <!--    {{studGroup.groupname}}-->
+  <!--  </mat-option>-->
+  <!--</mat-select>-->
+
+  <mat-radio-group (change)="onGroupChange($event)">
+    <mat-radio-button *ngFor="let studGroup of (info$ | async)?.groupList" [value]="studGroup.id">
+      {{studGroup.groupname}}
+    </mat-radio-button>
+  </mat-radio-group>
+
   <table mat-table [dataSource]="dataSource">
 
     <!-- ID Column -->
@@ -22,7 +39,7 @@
     <!-- Date Column -->
     <ng-container matColumnDef="mrkdate">
       <th mat-header-cell *matHeaderCellDef> Date</th>
-      <td mat-cell *matCellDef="let element"> {{element.mrkdate | date:'MMM d, y, H:mm'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.mrkdate | date:'MMM d, y, HH:mm'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -31,4 +48,5 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
 <app-map></app-map>

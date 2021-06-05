@@ -1,10 +1,10 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" hidden>
   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
 <mat-vertical-stepper [linear]="isLinear" #stepper>
   <!--Step 1: Groups-->
-  <mat-step [stepControl]="selectForm">
+  <mat-step [stepControl]="selectForm" state="step1">
 
     <form [formGroup]="selectForm">
       <ng-template matStepLabel>Choose your group</ng-template>
@@ -30,7 +30,7 @@
 
   </mat-step>
   <!--Step 2: Time-->
-  <mat-step [stepControl]="dateTimeForm" state="phone">
+  <mat-step [stepControl]="dateTimeForm" state="step2">
 
     <form [formGroup]="dateTimeForm">
       <mat-form-field>
@@ -47,7 +47,7 @@
         >
         </ngx-mat-datetime-picker>
       </mat-form-field>
-      <ng-template matStepLabel>Choose a infoDate & time</ng-template>
+      <ng-template matStepLabel>Set date & time</ng-template>
     </form>
     <div>
       <button mat-button matStepperPrevious>Back</button>
@@ -56,7 +56,7 @@
 
   </mat-step>
   <!--Step 3: Map-->
-  <mat-step state="chat">
+  <mat-step state="step3">
 
     <ng-template matStepLabel>Tag your location</ng-template>
     <app-map></app-map>
@@ -79,10 +79,13 @@
   </mat-step>
 
   <!-- Icon overrides. -->
-  <ng-template matStepperIcon="phone">
-    <mat-icon>call_end</mat-icon>
+  <ng-template matStepperIcon="step1">
+    <mat-icon>groups</mat-icon>
   </ng-template>
-  <ng-template matStepperIcon="chat">
-    <mat-icon>forum</mat-icon>
+  <ng-template matStepperIcon="step2">
+    <mat-icon>schedule</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="step3">
+    <mat-icon>travel_explore</mat-icon>
   </ng-template>
 </mat-vertical-stepper>

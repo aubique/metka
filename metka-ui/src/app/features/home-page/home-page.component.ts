@@ -26,8 +26,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Initialize the subscriptions to do GET reqs
-    this._facade.openMap();
     // const infoDate = this._facade.info?.initialMarker.infoDate;//TODO find out whether DateFromApi is needed or not
 
     // FormGroups for step 1 & step 2
@@ -49,7 +47,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._facade.closeMap();
+    this._facade.unbindInfoApi();
     this.subSelectCtrl.unsubscribe();
   }
 

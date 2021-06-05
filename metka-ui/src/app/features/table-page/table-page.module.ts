@@ -9,6 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SharedModule } from '../../shared/shared.module';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    MatRadioModule,
   ],
 })
 export class TablePageModule {

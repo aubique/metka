@@ -24,6 +24,6 @@ export class UnsubService extends BaseSubService {
   }
 
   public onMarkerListGetRequest(): void {
-    this.markerGetRequestSubscription.unsubscribe();
+    this.markerListGetRequestSubs.forEach(s => s.unsubscribe());
   }
 }

@@ -37,11 +37,12 @@ export class ApiService {
     return '/api/initialMarker/'.concat(markerToIdentify.id?.toString() ?? '0');//FIXME: drop out DELETE method
   }
 
-  public fetchMarkerListByGroup(): Observable<Array<Marker>> {
-    const groupId = 1;
+  public fetchMarkerListByGroup(groupId: number): Observable<Array<Marker>> {
+    console.log('fetchMarkerListByGroup()');
+    // const groupId = 1;
     return this.http
-      // .get<Array<Marker>>(ApiService.getGroupIdUrl(groupId));
-      .get<Array<Marker>>('/assets/mock/default-marker-list.json');
+      .get<Array<Marker>>(ApiService.getGroupIdUrl(groupId));
+      // .get<Array<Marker>>('/assets/mock/default-marker-list.json');
   }
 
   // public fetchFullMarkerList(): Observable<Array<Marker>> {
@@ -52,8 +53,8 @@ export class ApiService {
 
   public fetchInfoApi(): Observable<InfoApi> {
     return this.http
-      // .get<InfoApi>(ApiService.getInfoApiUrl());
-      .get<InfoApi>('/assets/mock/default-info-api.json');
+      .get<InfoApi>(ApiService.getInfoApiUrl());
+      // .get<InfoApi>('/assets/mock/default-info-api.json');
   }
 
   public doPostRequest(groupId: number, markerToCreate: DtoMarker): void {

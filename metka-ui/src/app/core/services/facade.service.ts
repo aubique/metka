@@ -55,20 +55,20 @@ export class FacadeService {
     this._store.dateCurrent$.next(date);
   }
 
-  public openMap(): void {
+  public bindInfoApi(): void {
     this._subscribe.onInfoGetRequest();
     this._service.loadMarkerFromLc();
   }
 
-  public closeMap(): void {
+  public unbindInfoApi(): void {
     this._unsubscribe.onInfoGetRequest();
   }
 
-  public openTable(): void {
-    this._subscribe.onMarkerListGetRequest();
+  public bindMarkerList(groupId: number): void {
+    this._subscribe.onMarkerListGetRequest(groupId);
   }
 
-  public closeTable(): void {
+  public unbindMarkerList(): void {
     this._unsubscribe.onMarkerListGetRequest();
   }
 

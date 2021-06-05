@@ -25,13 +25,11 @@ export class SubService extends BaseSubService {
 
   public onInfoGetRequest(): void {
     this.infoApiGetRequestSub = this.api.fetchInfoApi()
-      .pipe(
-        map((fetchInfoApi) => {
-          // Make initial marker "draggable"
-          fetchInfoApi.initialMarker.draggable = true;
-          return fetchInfoApi;
-        }),
-      ).subscribe((infoApiFetched) => {
+      .pipe(map((fetchInfoApi) => {
+        // Make initial marker "draggable"
+        fetchInfoApi.initialMarker.draggable = true;
+        return fetchInfoApi;
+      })).subscribe((infoApiFetched) => {
         // console.log('onInfoGetRequest() TRIGGERED');
         // console.log(infoApiFetched);
         this.store.infoRetrieved$.next(infoApiFetched);
@@ -40,20 +38,20 @@ export class SubService extends BaseSubService {
       });
   }
 
-  public onMarkerListGetRequest(): void {
-    this.markerListGetRequestSub = this.api.fetchMarkerListByGroup()
-      .pipe(
-        map((markers) => {
+  public onMarkerListGetRequest(groupId: number): void {
+    this.markerListGetRequestSubs.push(
+      this.api.fetchMarkerListByGroup(groupId)
+        .pipe(map((markers) => {
           // Make each marker "undraggable"
           markers.forEach((m) => {
             m.draggable = false;
           });
           return markers;
-        }),
-      ).subscribe((fetchedMarkers) => {
+        })).subscribe((fetchedMarkers) => {
         // console.log('onMarkerListGetRequest() - TRIGGERED');
         // console.log(fetchedMarkers);
         this.store.listOfMarkers$.next(fetchedMarkers);
-      });
+      }),
+    );
   }
 }

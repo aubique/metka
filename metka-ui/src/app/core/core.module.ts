@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { throwIfAlreadyLoaded } from './services/module-import.guard';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -12,11 +13,12 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        SharedModule,
+        MatToolbarModule,
+    ],
   providers: [],
   exports: [
     HeaderComponent,
