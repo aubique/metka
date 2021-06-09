@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin: 1.2em;
+}
+
+app-map {
+  margin: 0 1.6em;
+}
+
+//mat-radio-group {
+//  display: flex;
+//  flex-direction: column;
+//  margin: 15px 0;
+//}
+//
+//mat-radio-button {
+//  margin: 5px;
+//}

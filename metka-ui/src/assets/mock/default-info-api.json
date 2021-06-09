@@ -1,0 +1,18 @@
+{
+  "infoDate": "2021-06-01 09:00:00",
+  "initialMarker": {
+    "id": 0,
+    "lat": 47.496218,
+    "lng": -3.130986
+  },
+  "groupList": [
+    {
+      "id": 1,
+      "groupname": "Group #1"
+    },
+    {
+      "id": 2,
+      "groupname": "Group #2"
+    }
+  ]
+}

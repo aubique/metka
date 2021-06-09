@@ -1,0 +1,91 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" hidden>
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <!--Step 1: Groups-->
+  <mat-step [stepControl]="selectForm" state="step1">
+
+    <form [formGroup]="selectForm">
+      <ng-template matStepLabel>Choose your group</ng-template>
+      <mat-form-field appearance="fill">
+        <mat-label>Groups</mat-label>
+        <mat-select
+          formControlName="selectCtrl"
+        >
+          <mat-option>Undefined</mat-option>
+          <!--for(var studGroup: InfoApi.groupList){sout(studGroup.name)}-->
+          <mat-option
+            *ngFor="let studGroup of (info$ | async)?.groupList"
+            [value]="studGroup.id"
+          >
+            {{studGroup.groupname}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+
+  </mat-step>
+  <!--Step 2: Time-->
+  <mat-step [stepControl]="dateTimeForm" state="step2">
+
+    <form [formGroup]="dateTimeForm">
+      <mat-form-field>
+        <input matInput
+               formControlName="dateTimeCtrl"
+               placeholder="Time for initialMarker"
+               [ngxMatDatetimePicker]="picker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #picker
+                                 [showSpinners]="true"
+                                 [showSeconds]="false"
+                                 [stepMinute]="1"
+        >
+        </ngx-mat-datetime-picker>
+      </mat-form-field>
+      <ng-template matStepLabel>Set date & time</ng-template>
+    </form>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+
+  </mat-step>
+  <!--Step 3: Map-->
+  <mat-step state="step3">
+
+    <ng-template matStepLabel>Tag your location</ng-template>
+    <app-map></app-map>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext (click)="onConfirmStepper()">Confirm</button>
+    </div>
+
+  </mat-step>
+  <!--Step 4: Done-->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+
+    <p>You are now done.</p>
+    <div>
+      <!--<button mat-button matStepperPrevious>Back</button>-->
+      <button mat-button (click)="stepper.reset();resetDateTimeCtrl()">New marker</button>
+    </div>
+
+  </mat-step>
+
+  <!-- Icon overrides. -->
+  <ng-template matStepperIcon="step1">
+    <mat-icon>groups</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="step2">
+    <mat-icon>schedule</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="step3">
+    <mat-icon>travel_explore</mat-icon>
+  </ng-template>
+</mat-vertical-stepper>

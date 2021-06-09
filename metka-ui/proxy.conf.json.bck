@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://a8b68755-a0c0-4622-a0c5-246a56409579.mock.pstmn.io/api",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": "http://a8b68755-a0c0-4622-a0c5-246a56409579.mock.pstmn.io/api"
+    }
+  },
+  "logLevel": "debug"
+}
