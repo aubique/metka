@@ -19,12 +19,12 @@ repositories.whenObjectAdded {
   }
 }
 
-jar.dependsOn 'npm_run_prod'
-
-jar {
-  from 'dist/metka-ui' into 'static'
-}
-
-clean {
-  delete file("${projectDir}/dist")
-}
+//jar.dependsOn 'npm_run_build'
+//
+//jar {
+//  from 'dist/metka-ui' into 'resources/static'
+//}
+//
+//clean {
+//  delete file("${projectDir}/dist")
+//}

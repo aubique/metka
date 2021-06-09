@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './features/home-page/home-page.component';
+import { TablePageComponent } from './features/table-page/table-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./features/home-page/home-page.module').then(m => m.HomePageModule),
+    component: HomePageComponent,
   },
   {
     path: 'table',
-    loadChildren: () =>
-      import('./features/table-page/table-page.module').then(m => m.TablePageModule),
+    component: TablePageComponent,
   },
   {
     path: '',

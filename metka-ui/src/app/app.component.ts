@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FacadeService } from './core/services/facade.service';
 
 @Component({
@@ -6,8 +6,7 @@ import { FacadeService } from './core/services/facade.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'metka-ui';
+export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private _facade: FacadeService) {
   }
@@ -15,5 +14,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Initialize the subscriptions to do GET reqs
     this._facade.bindInfoApi();
+  }
+
+  ngOnDestroy(): void {
+    this._facade.unbindInfoApi();
   }
 }

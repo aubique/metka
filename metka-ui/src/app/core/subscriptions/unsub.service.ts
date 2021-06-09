@@ -20,10 +20,14 @@ export class UnsubService extends BaseSubService {
   }
 
   public onInfoGetRequest(): void {
-    this.infoApiGetRequestSub.unsubscribe();
+    // if (this.infoApiGetRequestSub != undefined) {
+    //   this.infoApiGetRequestSub.unsubscribe();
+    // }
   }
 
   public onMarkerListGetRequest(): void {
-    this.markerListGetRequestSubs.forEach(s => s.unsubscribe());
+    console.log(this.markerListGetRequestSubs);
+    // this.markerListGetRequestSubs.filter(s => (s != undefined))
+    //   .forEach(s => s.unsubscribe());
   }
 }

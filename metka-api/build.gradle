@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     // ANGULAR SPA
-    clientSide(project(':metka-ui'))
+    // clientSide(project(':metka-ui'))
     // SPRING BOOT, TESTING
     implementation('org.springframework.boot:spring-boot-starter-web') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-json'

@@ -7,8 +7,6 @@ import { FacadeService } from '../../core/services/facade.service';
 import { tap } from 'rxjs/operators';
 import { DtoMarker } from '../../core/model/dto-marker';
 import { InfoApi } from '../../core/model/info-api';
-import { MatSelectChange } from '@angular/material/select';
-import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'app-table-page',
@@ -19,10 +17,9 @@ export class TablePageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'lat', 'lng', 'mrkdate'];
   dataSource = new MatTableDataSource<DtoMarker>();
-  private _markerList: Observable<Array<DtoMarker>>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   info$: Observable<InfoApi>;
+  private _markerList: Observable<Array<DtoMarker>>;
 
   constructor(
     private _facade: FacadeService,
@@ -55,7 +52,7 @@ export class TablePageComponent implements OnInit, AfterViewInit, OnDestroy {
     this._facade.updateSelectedMarker(rowAsMarker);
   }
 
-  onGroupChange($event: MatRadioChange): void {
+  onGroupChange($event: any): void {
     const groupId = $event.value as number;
     this._facade.bindMarkerList(groupId);
   }

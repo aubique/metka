@@ -4,7 +4,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AgmCoreModule } from '@agm/core';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -12,17 +11,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
 import {
   NgxMatDatetimePickerModule,
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,
 } from '@angular-material-components/datetime-picker';
 import { MapComponent } from './components/map/map.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { TablePageRoutingModule } from '../features/table-page/table-page-routing.module';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -34,8 +35,10 @@ import { TablePageRoutingModule } from '../features/table-page/table-page-routin
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+    FlexModule,
+    FlexLayoutModule,
     // Material
-    MatExpansionModule,
     MatIconModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -43,26 +46,28 @@ import { TablePageRoutingModule } from '../features/table-page/table-page-routin
     MatButtonModule,
     MatStepperModule,
     MatSelectModule,
-    MatOptionModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    TablePageRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
     // 3rd-party
     FontAwesomeModule,
     AngularSvgIconModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyByf9KyDr1TBS4fcEjJyeUatCs1TPKstgk',
+      apiKey: '',
     })], exports: [
     // Angular
     MapComponent,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+    FlexModule,
+    FlexLayoutModule,
     // Material
-    MatExpansionModule,
     MatIconModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -70,14 +75,14 @@ import { TablePageRoutingModule } from '../features/table-page/table-page-routin
     MatButtonModule,
     MatStepperModule,
     MatSelectModule,
-    MatOptionModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
-    TablePageRoutingModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatButtonToggleModule,
+    MatToolbarModule,
     // 3d-party libs
     FontAwesomeModule,
     AngularSvgIconModule,

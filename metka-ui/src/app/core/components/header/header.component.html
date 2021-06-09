@@ -1,34 +1,48 @@
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--  <div class="container">-->
+<div id="header-container">
 
-<!--    <a class="navbar-brand" href="#">-->
-<!--      <svg-icon [svgStyle]="{ 'width.px':30, 'height.px':30, 'padding-bottom.px':5 }"-->
-<!--                src="assets/svg/marker.svg"></svg-icon>-->
-<!--      <span> Metka</span>-->
-<!--    </a>-->
-<!--    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"-->
-<!--            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--      <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
+  <mat-toolbar
+    class="toolbar"
+    fxLayout="row"
+    fxLayoutAlign.gt-sm="start center"
+    fxLayoutAlign.lt-md="center center"
+  >
+    <div>
+      <svg-icon class="filter-red" [svgStyle]="{ 'width.px':30, 'height.px':30, 'padding-top.px':5, 'color':'#ff6347' }"
+                src="assets/svg/marker.svg"></svg-icon>
+    </div>
 
-<!--    <div class="collapse navbar-collapse" id="navbarColor03">-->
-<!--      <ul class="navbar-nav me-auto">-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link active" href="#">Map-->
-<!--            &lt;!&ndash;<span class="visually-hidden">(current)</span>&ndash;&gt;-->
-<!--          </a>-->
-<!--        </li>-->
-<!--        <li class="nav-item">-->
-<!--          <a class="nav-link" href="table">Table</a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </div>-->
+    <div class="nav-title" fxFlexOffset.sm="35" fxFlexOffset.xs="20">
+      <span class="nav-title" fxHide.lt-md fxShow>
+        Human Factor Training 2021</span>
+      <span class="nav-title" fxHide.gt-sm fxShow>
+        F4KE2021</span>
+    </div>
 
-<!--  </div>-->
-<!--</nav>-->
+    <div fxFlex fxFlexOffset.sm="30" fxFlexOffset.xs="15">
+      <a href="" target="_self">
+        <button fxHide.lt-md mat-stroked-button>Map</button>
+        <button color="" fxHide.gt-sm mat-mini-fab>
+          <mat-icon aria-hidden="false" class="link-icon" color="primary">
+            map
+          </mat-icon>
+        </button>
+      </a>
 
-<mat-toolbar>
-  <svg-icon [svgStyle]="{ 'width.px':30, 'height.px':30, 'padding-bottom.px':5 }"
-            src="assets/svg/marker.svg"></svg-icon>
-  <span>Metka</span>
-</mat-toolbar>
+      <a href="/table" target="_self">
+        <button fxHide.lt-md mat-stroked-button>Summary</button>
+        <!--<span class="nav-link">Summary</span>-->
+        <button color="" fxHide.gt-sm mat-mini-fab>
+          <mat-icon aria-hidden="false" class="link-icon" color="primary">
+            table_chart
+          </mat-icon>
+        </button>
+      </a>
+    </div>
+
+    <a fxHide
+       fxShow.gt-sm href="https://github.com/aubique/metka" rel="noopener" target="_blank">
+      <fa-icon [icon]="faGithub" class="reset-color">
+      </fa-icon>
+    </a>
+  </mat-toolbar>
+</div>

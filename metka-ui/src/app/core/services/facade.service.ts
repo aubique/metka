@@ -69,6 +69,7 @@ export class FacadeService {
   }
 
   public unbindMarkerList(): void {
+    console.log(this._unsubscribe.markerListGetRequestSubs);
     this._unsubscribe.onMarkerListGetRequest();
   }
 

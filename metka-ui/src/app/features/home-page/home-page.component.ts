@@ -47,7 +47,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._facade.unbindInfoApi();
+    // this._facade.unbindInfoApi();
     this.subSelectCtrl.unsubscribe();
   }
 

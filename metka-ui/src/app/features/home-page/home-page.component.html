@@ -1,8 +1,8 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear" hidden>
+<button fxHide (click)="isLinear = !isLinear" hidden id="toggle-linear" mat-raised-button>
   {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
 </button>
 
-<mat-vertical-stepper [linear]="isLinear" #stepper>
+<mat-vertical-stepper #stepper [linear]="isLinear">
   <!--Step 1: Groups-->
   <mat-step [stepControl]="selectForm" state="step1">
 
@@ -34,15 +34,15 @@
 
     <form [formGroup]="dateTimeForm">
       <mat-form-field>
-        <input matInput
+        <input [ngxMatDatetimePicker]="picker"
                formControlName="dateTimeCtrl"
+               matInput
                placeholder="Time for initialMarker"
-               [ngxMatDatetimePicker]="picker"
         >
-        <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+        <mat-datepicker-toggle [for]="$any(picker)" matSuffix></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker
-                                 [showSpinners]="true"
                                  [showSeconds]="false"
+                                 [showSpinners]="true"
                                  [stepMinute]="1"
         >
         </ngx-mat-datetime-picker>
@@ -62,7 +62,7 @@
     <app-map></app-map>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext (click)="onConfirmStepper()">Confirm</button>
+      <button (click)="onConfirmStepper()" mat-button matStepperNext>Confirm</button>
     </div>
 
   </mat-step>
@@ -73,7 +73,7 @@
     <p>You are now done.</p>
     <div>
       <!--<button mat-button matStepperPrevious>Back</button>-->
-      <button mat-button (click)="stepper.reset();resetDateTimeCtrl()">New marker</button>
+      <button (click)="stepper.reset();resetDateTimeCtrl()" mat-button>New marker</button>
     </div>
 
   </mat-step>

@@ -42,7 +42,7 @@ export class ApiService {
     // const groupId = 1;
     return this.http
       .get<Array<Marker>>(ApiService.getGroupIdUrl(groupId));
-      // .get<Array<Marker>>('/assets/mock/default-marker-list.json');
+    // .get<Array<Marker>>('/assets/mock/default-marker-list.json');
   }
 
   // public fetchFullMarkerList(): Observable<Array<Marker>> {
@@ -54,7 +54,7 @@ export class ApiService {
   public fetchInfoApi(): Observable<InfoApi> {
     return this.http
       .get<InfoApi>(ApiService.getInfoApiUrl());
-      // .get<InfoApi>('/assets/mock/default-info-api.json');
+    // .get<InfoApi>('/assets/mock/default-info-api.json');
   }
 
   public doPostRequest(groupId: number, markerToCreate: DtoMarker): void {

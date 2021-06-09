@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 
 export abstract class BaseSubService {
 
-  protected markerGetRequestSubscription!: Subscription;
-  protected infoApiGetRequestSub!: Subscription;
-  protected markerListGetRequestSubs = new Array<Subscription>();
+  public markerGetRequestSubscription!: Subscription;
+  public infoApiGetRequestSub!: Subscription;
+  public markerListGetRequestSubs = new Array<Subscription>();
 
   protected constructor(
     protected api: ApiService,
