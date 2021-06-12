@@ -24,6 +24,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -54,11 +55,12 @@ import { RouterModule } from '@angular/router';
     MatRadioModule,
     MatButtonToggleModule,
     MatToolbarModule,
+    MatSnackBarModule,
     // 3rd-party
     FontAwesomeModule,
     AngularSvgIconModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: '',
+      apiKey: '',//TODO.sbdbd
     })], exports: [
     // Angular
     MapComponent,
@@ -83,10 +85,12 @@ import { RouterModule } from '@angular/router';
     MatRadioModule,
     MatButtonToggleModule,
     MatToolbarModule,
+    MatSnackBarModule,
     // 3d-party libs
     FontAwesomeModule,
     AngularSvgIconModule,
     AgmCoreModule,
+    // Shared components
   ],
 })
 export class SharedModule {

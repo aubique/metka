@@ -10,6 +10,4 @@ import java.util.List;
 public interface MarkerRepository extends JpaRepository<Marker, Long> {
 
     List<Marker> findAllByStudgroup_Id(Long groupId);
-
-    //TODO: findByDate
 }

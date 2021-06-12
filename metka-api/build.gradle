@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'ensibs.c4'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.4'
 sourceCompatibility = '11'
 
 configurations {
@@ -50,7 +50,7 @@ test {
     useJUnitPlatform()
 }
 
-def profiles = 'dev'
+def profiles = 'prod'
 bootRun {
     args = ["--spring.profiles.active=" + profiles]
 }

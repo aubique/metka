@@ -26,8 +26,6 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // const infoDate = this._facade.info?.initialMarker.infoDate;//TODO find out whether DateFromApi is needed or not
-
     // FormGroups for step 1 & step 2
     this.selectForm = this._formBuilder.group(
       {selectCtrl: [null, Validators.required]});
@@ -55,7 +53,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     this._facade.confirmStepper();
   }
 
-  resetDateTimeCtrl(): void {//TODO assert validators
+  resetDateTimeCtrl(): void {
     this.dateTimeForm.reset({'dateTimeCtrl': new Date()});
   }
 }

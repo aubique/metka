@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   private static getMarkIdUrl(markerToIdentify: Marker): string {
-    return '/api/initialMarker/'.concat(markerToIdentify.id?.toString() ?? '0');//FIXME: drop out DELETE method
+    return '/api/initialMarker/'.concat(markerToIdentify.id?.toString() ?? '0');
   }
 
   public fetchMarkerListByGroup(groupId: number): Observable<Array<Marker>> {
@@ -63,7 +63,7 @@ export class ApiService {
     this.http
       .post<void>(ApiService.getGroupIdUrl(groupId), markerToCreate, this.httpOptions)
       .subscribe();
-    //.get<Marker>('/assets/mock/put-request.json');
+    // .get<Marker>('/assets/mock/put-request.json');
   }
 
   // public doDeleteRequest(markToDelete: Marker): Observable<any> {

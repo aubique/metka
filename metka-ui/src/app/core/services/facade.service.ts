@@ -8,6 +8,7 @@ import { InfoApi } from '../model/info-api';
 import { SubService } from '../subscriptions/sub.service';
 import { UnsubService } from '../subscriptions/unsub.service';
 import { DtoMarker } from '../model/dto-marker';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class FacadeService {
     private _service: MarkerService,
     private _subscribe: SubService,
     private _unsubscribe: UnsubService,
+    private _infoSnackBar: MatSnackBar,
   ) {
   }
 
@@ -82,6 +84,7 @@ export class FacadeService {
   }
 
   public confirmStepper(): void {
-    this._service.postDtoMarker();
+    // this._service.postDtoMarker();
+    this._infoSnackBar.open('F4KE2021 session is over, you can no longer add markers.', 'OK');
   }
 }
