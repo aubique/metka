@@ -62,6 +62,7 @@
     <app-map></app-map>
     <div>
       <button mat-button matStepperPrevious>Back</button>
+      <button (click)="resetCoordinates(ERRORS.ENABLED)" mat-button>Reset coordinates</button>
       <button (click)="onConfirmStepper()" mat-button matStepperNext>Confirm</button>
     </div>
 
@@ -73,7 +74,10 @@
     <p>You are now done.</p>
     <div>
       <!--<button mat-button matStepperPrevious>Back</button>-->
-      <button (click)="stepper.reset();resetDateTimeCtrl()" mat-button>New marker</button>
+      <button (click)="stepper.reset();resetDateTimeCtrl();resetCoordinates(ERRORS.DISABLED)"
+              mat-button>
+        New marker
+      </button>
     </div>
 
   </mat-step>

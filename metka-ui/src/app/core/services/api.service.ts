@@ -48,7 +48,7 @@ export class ApiService {
   // public fetchFullMarkerList(): Observable<Array<Marker>> {
   //   return this.http
   //     .get<Array<Marker>>(ApiService.getAllGroupsIdUrl());
-  //   //.get<Array<Marker>>('/assets/mock/get-request.json');
+  //.get<Array<Marker>>('/assets/mock/get-request.json');
   // }
 
   public fetchInfoApi(): Observable<InfoApi> {

@@ -6,13 +6,20 @@ import { FactoryHelper } from '../../shared/util/factory-helper';
 import { DtoMarker } from '../model/dto-marker';
 import { DatePipe } from '@angular/common';
 
+interface cb {
+  (): void;
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class MarkerService {
 
   private static readonly MARKER_LC_NAME = 'metka';
+  private static readonly ZOOM_LC_NAME = 'zoom';
   private static readonly DATE_FORMAT = 'yyyy-MM-ddTHH:mm:ssZ';
+  public GPS = () => this._pullMarkerFromNavigator();
+  public LC = () => this._pullMarkerFromLocalStorage();
 
   // MariaDB = '2020-12-31 23:59:59.000000';
 
@@ -23,11 +30,40 @@ export class MarkerService {
   ) {
   }
 
-  // Push to the StoreService if LC-item (marker) exists
-  public loadMarkerFromLc(): void {
-    const item: string | null = localStorage.getItem(MarkerService.MARKER_LC_NAME);
+  // Push to Store from NavigatorGeolocation or LocalStorage
+  public loadMarkerFrom(markerSources: cb[]) {
+    markerSources.forEach((doPush) => doPush());
+  }
 
-    if (item) {
+  // Retrieve new GPS coordinates from browser
+  private _pullMarkerFromNavigator(): void {
+    const navMarker = {draggable: true} as Marker;
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        navMarker!.lat = position.coords.latitude;
+        navMarker!.lng = position.coords.longitude;
+
+        this.store.markerCurrent$.next(navMarker);
+        this.store.geolocationAllowed$.next(true);
+
+        console.log(navMarker);
+      }, (msg) => {
+        // Error
+        if (msg.code === msg.PERMISSION_DENIED) {
+          this.store.geolocationAllowed$.next(false);
+        }
+        console.log(msg.message);
+      });
+    }
+  }
+
+  // Retrieve Marker from LocalStorage if exists
+  private _pullMarkerFromLocalStorage(): void {
+    const item: string | null = localStorage.getItem(MarkerService.MARKER_LC_NAME);
+    const isGeolocationDenied = !(this.store.geolocationAllowed$.getValue());
+
+    if (item && isGeolocationDenied) {
       this.store.markerCurrent$.next(JSON.parse(item) as Marker);
     }
   }
@@ -39,6 +75,20 @@ export class MarkerService {
     this.store.markerCurrent$.next(marker);
 
     localStorage.setItem(MarkerService.MARKER_LC_NAME, JSON.stringify(marker));
+  }
+
+  // Push new Zoom value from LocalStorage to Store
+  public pullZoomFromLocalStorage(): void {
+    const item: string | null = localStorage.getItem(MarkerService.ZOOM_LC_NAME);
+
+    if (item) {
+      this.store.zoomValue$.next(JSON.parse(item) as number);
+    }
+  }
+
+  // Push new zoom value to the LocalStorage
+  public storeNewZoomValue(zoom: number) {
+    localStorage.setItem(MarkerService.ZOOM_LC_NAME, JSON.stringify(zoom));
   }
 
   // Compose DtoMarker to do POST request

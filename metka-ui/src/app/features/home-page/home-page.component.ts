@@ -3,6 +3,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { FacadeService } from '../../core/services/facade.service';
 import { Observable, Subscription } from 'rxjs';
 import { InfoApi } from '../../core/model/info-api';
+import { SnackBarMessage } from '../../shared/constants/snack-bar-message';
+
+export enum ErrorVerbosity {
+  DISABLED,
+  ENABLED,
+}
 
 @Component({
   selector: 'app-hometag',
@@ -11,6 +17,7 @@ import { InfoApi } from '../../core/model/info-api';
 })
 export class HomePageComponent implements OnInit, OnDestroy {
 
+  readonly ERRORS = ErrorVerbosity;
   readonly info$!: Observable<InfoApi>;
   isLinear = false;
   selectForm!: FormGroup;
@@ -55,5 +62,15 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   resetDateTimeCtrl(): void {
     this.dateTimeForm.reset({'dateTimeCtrl': new Date()});
+  }
+
+  resetCoordinates(errorMode: ErrorVerbosity): void {
+    if (this._facade.isGeoDenied && errorMode === this.ERRORS.ENABLED) {
+      //alert('User denied Geolocation feature in the browser');
+      this._facade.showMessageSnackBar(SnackBarMessage.GEOLOCATION_DENIED);
+      return;
+    }
+
+    this._facade.updateGps();
   }
 }

@@ -3,8 +3,8 @@ import { Marker } from '../../core/model/marker';
 export const MarkerMock = {
 
   id: 0,
-  lat: 42.858217,
-  lng: -70.929990,
-  // lat: 47.496218,
-  // lng: -3.130986,
+  // lat: 47.7167906,
+  // lng: -2.7638336,
+  lat: 47.6412532,
+  lng: -2.7523399,
 } as Marker;

@@ -33,7 +33,11 @@ export class SubService extends BaseSubService {
         // console.log('onInfoGetRequest() TRIGGERED');
         // console.log(infoApiFetched);
         this.store.infoRetrieved$.next(infoApiFetched);
-        this.store.markerCurrent$.next(infoApiFetched.initialMarker);
+
+        const isGeolocationDenied = !(this.store.geolocationAllowed$.getValue());
+        if (isGeolocationDenied) {
+          this.store.markerCurrent$.next(infoApiFetched.initialMarker);
+        }
       });
   }
 

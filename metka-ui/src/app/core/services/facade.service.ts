@@ -49,6 +49,14 @@ export class FacadeService {
     return this._store.groupSelected$;
   }
 
+  get isGeoDenied(): boolean {
+    return !(this._store.geolocationAllowed$.getValue());
+  }
+
+  get zoomValue$(): Observable<number> {
+    return this._store.zoomValue$;
+  }
+
   public updateGroup(selectedId: number) {//
     this._store.groupSelected$.next(selectedId);
   }
@@ -58,8 +66,15 @@ export class FacadeService {
   }
 
   public bindInfoApi(): void {
+    const {LC, GPS} = this._service;
+
     this._subscribe.onInfoGetRequest();
-    this._service.loadMarkerFromLc();
+    this._service.loadMarkerFrom([LC, GPS]);
+    this._service.pullZoomFromLocalStorage();
+  }
+
+  public updateGps(): void {
+    this._service.loadMarkerFrom([this._service.GPS]);
   }
 
   public unbindInfoApi(): void {
@@ -75,6 +90,10 @@ export class FacadeService {
     this._unsubscribe.onMarkerListGetRequest();
   }
 
+  public changeZoom(newZoomValue: number): void {
+    this._service.storeNewZoomValue(newZoomValue);
+  }
+
   public moveMarkerOnTheMap(latNew: number, lngNew: number, dateNew?: Date): void {
     this._service.storeNewMarker(latNew, lngNew, dateNew);
   }
@@ -84,7 +103,11 @@ export class FacadeService {
   }
 
   public confirmStepper(): void {
-    // this._service.postDtoMarker();
-    this._infoSnackBar.open('F4KE2021 session is over, you can no longer add markers.', 'OK');
+    this._service.postDtoMarker();
+    // this.showMessageSnackBar(SnackBarMessage.SESSION_OVER);
+  }
+
+  public showMessageSnackBar(message: string): void {
+    this._infoSnackBar.open(message, 'OK');
   }
 }

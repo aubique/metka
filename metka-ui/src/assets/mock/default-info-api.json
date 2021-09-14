@@ -1,38 +1,50 @@
 {
-  "infoDate": "2021-06-01 09:00:00",
+  "infoDate": "2021-09-15 14:00:00",
   "initialMarker": {
     "id": 0,
-    "lat": 47.496218,
-    "lng": -3.130986
+    "lat": 47.644950,
+    "lng": -2.748060
   },
   "groupList": [
     {
       "id": 1,
-      "groupname": "Group #1"
+      "groupname": "1.Alexander"
     },
     {
       "id": 2,
-      "groupname": "Group #2"
+      "groupname": "2.Julien"
     },
     {
       "id": 3,
-      "groupname": "Group #3"
+      "groupname": "3.Stéphane"
     },
     {
       "id": 4,
-      "groupname": "Group #4"
+      "groupname": "4.Sébastien"
     },
     {
       "id": 5,
-      "groupname": "Group #5"
+      "groupname": "5.Vianney"
     },
     {
       "id": 6,
-      "groupname": "Group #6"
+      "groupname": "6.Jamal"
     },
     {
       "id": 7,
-      "groupname": "Group #7"
+      "groupname": "Gr7 Benoit"
+    },
+    {
+      "id": 8,
+      "groupname": "Gr8.Sébastien"
+    },
+    {
+      "id": 9,
+      "groupname": "Gr9.Stéphane"
+    },
+    {
+      "id": 10,
+      "groupname": "Gr10.Thierry"
     }
   ]
 }

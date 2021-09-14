@@ -1,16 +1,18 @@
 <agm-map
   [clickableIcons]="false"
   [disableDefaultUI]="true"
-  [latitude]="(marker | async)?.lat || $any(LAT_DEFAULT)"
-  [longitude]="(marker | async)?.lng || $any(LNG_DEFAULT)"
-  [minZoom]="10"
-  [zoom]="14"
+  [latitude]="$any((marker | async)?.lat)"
+  [longitude]="$any((marker | async)?.lng)"
+  [minZoom]="MIN_ZOOM"
+  [zoom]="$any(currZoom | async)"
+  (zoomChange)="onZoomChange($event)"
+  (mapReady)="mapReadyHandler($event)"
 >
   <agm-marker
-    (dragEnd)="onDragEnd($event)"
+    [markerDraggable]="$any((marker | async)?.draggable)"
     [latitude]="$any((marker | async)?.lat)"
     [longitude]="$any((marker | async)?.lng)"
-    [markerDraggable]="$any((marker | async)?.draggable)"
+    (dragEnd)="onDragEnd($event)"
   >
     <agm-info-window>
       <strong>{{ (marker | async)?.id }}</strong>
