@@ -9,8 +9,8 @@ import java.util.List;
 
 public class InfoApiFactory {
 
-    private static final double LATITUDE = 47.716787;
-    private static final double LONGITUDE = -2.763831;
+    private static final double LATITUDE = 47.7409029;
+    private static final double LONGITUDE = -2.7196766;
 //  private static final int NUMBER_OF_GROUPS = 10;
 //  private static String GROUP_NAME_PATTERN = "Group №";
 

@@ -44,7 +44,7 @@ public class MarkerServiceImpl implements MarkerService {
 
     @Override
     public List<Marker> getMarkerListByGroup(Long groupId) throws ResourceNotFoundException {
-        final List<Marker> groupMarkerList = markerRepository.findAllByStudgroup_Id(groupId);
+        final List<Marker> groupMarkerList = markerRepository.findAllByStudgroup_IdOrderByIdDesc(groupId);
         if (groupMarkerList.isEmpty()) throw new ResourceNotFoundException();
 
         return groupMarkerList;

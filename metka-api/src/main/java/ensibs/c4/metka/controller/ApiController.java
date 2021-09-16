@@ -21,16 +21,12 @@ import java.util.List;
 
 @Log4j2
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "https://codepin21.scyde.fr"})
 @RequestMapping("/api/")
 public class ApiController {
 
     @Autowired
     private Gson gson;
-//    private final Gson gson = new GsonBuilder()
-//        .setPrettyPrinting()
-//        .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-//        .create();
 
     @Autowired
     private MarkerService markerService;

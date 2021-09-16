@@ -62,7 +62,7 @@
     <app-map></app-map>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button (click)="resetCoordinates(ERRORS.ENABLED)" mat-button>Reset coordinates</button>
+      <button (click)="resetCoordinates(ERRORS.ENABLED)" mat-button>Update GPS</button>
       <button (click)="onConfirmStepper()" mat-button matStepperNext>Confirm</button>
     </div>
 
@@ -71,7 +71,6 @@
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
 
-    <p>You are now done.</p>
     <div>
       <!--<button mat-button matStepperPrevious>Back</button>-->
       <button (click)="stepper.reset();resetDateTimeCtrl();resetCoordinates(ERRORS.DISABLED)"

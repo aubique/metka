@@ -60,7 +60,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FontAwesomeModule,
     AngularSvgIconModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: '',//TODO.sbdbd
+      apiKey: '',//TODO: GCP.API-key
     })], exports: [
     // Angular
     MapComponent,
