@@ -9,6 +9,7 @@ import { SubService } from '../subscriptions/sub.service';
 import { UnsubService } from '../subscriptions/unsub.service';
 import { DtoMarker } from '../model/dto-marker';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarMessage } from '../../shared/constants/snack-bar-message';
 
 @Injectable({
   providedIn: 'root',
@@ -103,8 +104,8 @@ export class FacadeService {
   }
 
   public confirmStepper(): void {
-    this._service.postDtoMarker();
-    // this.showMessageSnackBar(SnackBarMessage.SESSION_OVER);
+    // this._service.postDtoMarker();
+    this.showMessageSnackBar(SnackBarMessage.SESSION_OVER);
   }
 
   public showMessageSnackBar(message: string): void {
